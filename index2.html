@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="buttonparent">
+  </div>   
+
+  <script>
+  let state = {
+    count: 0
+  }
+
+  function buttonComponents(count) {
+    const button = document.createElement("button");
+    button.innerHTML = "Counter " + count;
+    button.setAttribute("onclick", 'OnButtonPress()');   
+
+
+    // Determine the button color based on the count
+    if (count % 2 === 0) {
+      button.style.backgroundColor = "red";
+    } else {
+      button.style.backgroundColor = "yellow";
+    }
+
+    return button;
+  }
+
+  function OnButtonPress() {
+    state.count++;
+    const button = buttonComponents(state.count);
+    document.getElementById("buttonparent").innerHTML = ""; // Clear the previous button
+    document.getElementById("buttonparent").appendChild(button);
+  }
+
+  const initialButton = buttonComponents(state.count);
+  document.getElementById("buttonparent").appendChild(initialButton);
+  </script>
+</body>
+</html>
